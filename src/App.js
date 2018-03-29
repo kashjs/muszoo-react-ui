@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import VideoList from "./VideoList/VideoList";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <div className="app">
+        <header className="app-header">
+          <nav><div className="muszoo-logo"></div></nav>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="app-sidebar">Sidebar</div>
+        <div className="app-content"><VideoList></VideoList></div>
+        <div className="app-footer">Footer</div>
       </div>
     );
   }

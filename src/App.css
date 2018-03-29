@@ -1,28 +1,59 @@
-.App {
+.app {
   text-align: center;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar sidebar"
+    "content content"
+    "footer footer";
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.app .app-header {
+  background: #bbb;
+  grid-area: header;
+  height: 60px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.app .app-header nav{
+  /*position: fixed;*/
+  /*top: 0;*/
+  height: 60px;
+  width: 100%;
+  background: #efefef;
+  overflow: hidden;
 }
 
-.App-title {
-  font-size: 1.5em;
+.app .muszoo-logo{
+  height: 30px;
+  background-image: url("./img/l.png");
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  margin: 12px;
 }
 
-.App-intro {
-  font-size: large;
+.app .app-sidebar {
+  background: lightblue;
+  grid-area: sidebar;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.app .app-content {
+  background: lightgreen;
+  grid-area: content;
+}
+.app .app-footer {
+  background: pink;
+  grid-area: footer
+}
+
+@media only screen and (min-width: 550px) {
+  .app {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-areas:
+            "header header"
+            "sidebar content"
+            "footer footer";
+  }
 }

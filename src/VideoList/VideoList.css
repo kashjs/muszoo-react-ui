@@ -1,0 +1,13 @@
+.mz-video-list {
+    display: grid;
+    grid-gap: 12px;
+    margin: 12px;
+    grid-template-columns: repeat( auto-fill, minmax(130px, 1fr) );
+}
+
+.mz-video-list .mz-video-item {
+    background: lightyellow;
+    padding: 5px;
+    font-size: 12px;
+    overflow: hidden;
+}
