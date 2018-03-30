@@ -1,7 +1,8 @@
 .mz-video-thumbnail-container {
     cursor: pointer;
-    background: lightyellow;
     padding: 10px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    font-size: 12px;
 }
 
 .mz-video-thumbnail-container.isPlaying {

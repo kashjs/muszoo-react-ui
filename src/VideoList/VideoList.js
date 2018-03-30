@@ -2,72 +2,28 @@ import React, {Component} from 'react';
 import './VideoList.css';
 import VideoThumbnail from "./VideoThumbnail";
 import VideoPlayer from "./VideoPlayer";
+import VideoSearch from "./VideoSearch";
 
 
 class VideoList extends Component {
 
   constructor(props) {
     super(props);
-    // this.state = {
-    //   color: props.initialColor
-    // };
-    let self = this;
 
     this.state = {
       videos: [],
       currentVideo: {}
     };
 
-    this._loadVideos = this._loadVideos.bind(this);
-
-    window.googleApiClientReady = function() {
-      window.gapi.auth.init(function() {
-        window.setTimeout(window.loadAPIClientInterfaces, 1);
-      });
-    }
-
-    window.loadAPIClientInterfaces = function () {
-      window.gapi.client.load('youtube', 'v3', function() {
-        window.handleAPILoaded();
-      });
-    }
-
-    // After the API loads, call a function to enable the search box.
-    window.handleAPILoaded = function () {
-      self._loadVideos();
-    }
-
-    let loadApiScript = () => {
-      let scr = document.createElement('script');
-      scr.type = 'text/javascript';
-      scr.async = true;
-      scr.src = "https://apis.google.com/js/client.js?onload=googleApiClientReady";
-      let s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(scr, s);
-    }
-
-    loadApiScript();
-  }
-
-  videos = [];
-
-  _loadVideos(term = 'arijit') {
-    let queryObject = {
-      q: term,
-      part: 'snippet',
-      maxResults: 50,
-      type: 'video',
-      videoCategoryId: 10,
-      videoEmbeddable: true,
-      fields: 'items(id(videoId),snippet(title,channelTitle,thumbnails(default))),nextPageToken',
-      key: 'AIzaSyDw5pJolqkxiAsQ6V8NeCpohdR3dRqDwWg'
-    }, request = window.gapi.client.youtube.search.list(queryObject);
-
-    request.execute((response) => this.setState({videos: response.items, currentVideo: response.items[0]}));
+    this.handleVideoListChange = this.handleVideoListChange.bind(this);
   }
 
   handleVideoClicked(video) {
     this.setState({currentVideo: video});
+  }
+
+  handleVideoListChange(videos) {
+    this.setState({videos: videos, currentVideo: videos[0]})
   }
 
   render() {
@@ -83,6 +39,7 @@ class VideoList extends Component {
 
     return (
       <div>
+        <div><VideoSearch onVideoListChange={this.handleVideoListChange}></VideoSearch></div>
         <div>
           <VideoPlayer currentVideo={this.state.currentVideo}></VideoPlayer>
         </div>

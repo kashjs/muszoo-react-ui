@@ -33,17 +33,18 @@
 }
 
 .app .app-sidebar {
-  background: lightblue;
+  background: #ccc;
   grid-area: sidebar;
 }
 
 .app .app-content {
-  background: lightgreen;
   grid-area: content;
+    min-height: 800px;
 }
 .app .app-footer {
-  background: pink;
-  grid-area: footer
+    background: #efefef;
+  grid-area: footer;
+    min-height: 100px;
 }
 
 @media only screen and (min-width: 550px) {

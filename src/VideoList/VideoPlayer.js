@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './VideoPlayer.css';
 
 class VideoPlayer extends Component {
 
@@ -48,7 +48,11 @@ class VideoPlayer extends Component {
   }
 
   render() {
-    return (<div id="player"></div>);
+    return (
+      <div className={'player_container ' + (this.props.currentVideo.id ? 'visible' : 'hidden') }>
+        <div id="player"></div>
+      </div>
+    );
   }
 }
 

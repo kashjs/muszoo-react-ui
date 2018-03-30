@@ -10,9 +10,9 @@ class App extends Component {
         <header className="app-header">
           <nav><div className="muszoo-logo"></div></nav>
         </header>
-        <div className="app-sidebar">Sidebar</div>
+        <div className="app-sidebar"></div>
         <div className="app-content"><VideoList></VideoList></div>
-        <div className="app-footer">Footer</div>
+        <div className="app-footer"></div>
       </div>
     );
   }
