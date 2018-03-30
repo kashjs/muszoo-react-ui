@@ -1,0 +1,10 @@
+.mz-video-thumbnail-container {
+    cursor: pointer;
+    background: lightyellow;
+    padding: 10px;
+}
+
+.mz-video-thumbnail-container.isPlaying {
+    background: lightblue;
+    cursor: pointer
+}

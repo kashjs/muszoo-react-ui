@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './VideoList.css';
 import VideoThumbnail from "./VideoThumbnail";
+import VideoPlayer from "./VideoPlayer";
 
 
 class VideoList extends Component {
@@ -13,7 +14,8 @@ class VideoList extends Component {
     let self = this;
 
     this.state = {
-      videos: []
+      videos: [],
+      currentVideo: {}
     };
 
     this._loadVideos = this._loadVideos.bind(this);
@@ -61,21 +63,32 @@ class VideoList extends Component {
       key: 'AIzaSyDw5pJolqkxiAsQ6V8NeCpohdR3dRqDwWg'
     }, request = window.gapi.client.youtube.search.list(queryObject);
 
-    request.execute((response) => this.setState({videos: response.items}));
+    request.execute((response) => this.setState({videos: response.items, currentVideo: response.items[0]}));
+  }
+
+  handleVideoClicked(video) {
+    this.setState({currentVideo: video});
   }
 
   render() {
-    var listItems = this.state.videos.map(function(video) {
+    let listItems = this.state.videos.map((video) => {
       return (
-        <div className="mz-video-item">
-          <VideoThumbnail key={video.id.videoId} video={video}></VideoThumbnail>
+        <div className="mz-video-item" key={video.id.videoId} onClick={() => { this.handleVideoClicked(video) }}>
+          <VideoThumbnail key={video.id.videoId}
+                          video={video}
+                          isPlaying={this.state.currentVideo.id.videoId === video.id.videoId}></VideoThumbnail>
         </div>
       );
     });
 
     return (
-      <div className="mz-video-list">
-        {listItems}
+      <div>
+        <div>
+          <VideoPlayer currentVideo={this.state.currentVideo}></VideoPlayer>
+        </div>
+        <div className="mz-video-list">
+          {listItems}
+        </div>
       </div>
     );
   }
